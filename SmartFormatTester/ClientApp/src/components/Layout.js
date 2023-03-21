@@ -1,8 +1,12 @@
 import React from "react";
-import { Container } from "reactstrap";
-
+import { MDBContainer } from "mdb-react-ui-kit";
 const Layout = ({ children }) => {
-    return <Container>{children}</Container>;
+    return (
+        <MDBContainer className="py-2">
+            <h1>SmartFormat Tester</h1>
+            {children}
+        </MDBContainer>
+    );
 };
 
 export default Layout;
