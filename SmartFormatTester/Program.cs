@@ -17,7 +17,11 @@ Smart.Default.FormatterExtensions.Add(new IsMatchFormatter { RegexOptions = Rege
 
 var app = builder.Build();
 
-app.UseHttpsRedirection();
+// Configure the HTTP request pipeline.
+if (!app.Environment.IsDevelopment())
+{
+}
+
 app.UseStaticFiles();
 app.UseRouting();
 

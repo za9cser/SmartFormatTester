@@ -3,7 +3,7 @@
   <PropertyGroup Label="Globals">
     <ProjectVersion>2.1</ProjectVersion>
     <DockerTargetOS>Linux</DockerTargetOS>
-    <ProjectGuid>053ec715-c8f1-4cf7-a76f-304cea93d7c2</ProjectGuid>
+    <ProjectGuid>00fa2a28-4821-4c8f-b971-1f74e3e111be</ProjectGuid>
     <DockerLaunchAction>LaunchBrowser</DockerLaunchAction>
     <DockerServiceUrl>{Scheme}://localhost:{ServicePort}</DockerServiceUrl>
     <DockerServiceName>smartformattester</DockerServiceName>

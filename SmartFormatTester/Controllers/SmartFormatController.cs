@@ -6,8 +6,8 @@ using SmartFormatTester.Models;
 namespace SmartFormatTester.Controllers;
 
 [ApiController]
-[Route("api/[controller]")]
-public class SmartFormatController : Controller
+[Route("[controller]")]
+public class SmartFormatController : ControllerBase
 {
     [HttpPost]
     public IActionResult Format(SmartFormatRequest? request)

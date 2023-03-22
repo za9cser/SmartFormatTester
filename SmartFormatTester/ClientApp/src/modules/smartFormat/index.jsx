@@ -19,7 +19,7 @@ const initialValues = {
     model: "",
 };
 
-const URL = "api/smartFormat";
+const URL = "smartFormat";
 
 const SmartFormat = () => {
     const smartFormat = async (model, expressions) => {
