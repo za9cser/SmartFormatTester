@@ -4,7 +4,7 @@ import React from "react";
 
 function MDBFormikTextArea({ ...props }) {
     const [field] = useField(props);
-    return <MDBTextArea {...field} {...props} />;
+    return <MDBTextArea {...field} {...props} autoComplete="off" />;
 }
 
 export default MDBFormikTextArea;

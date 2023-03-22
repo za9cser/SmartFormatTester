@@ -4,7 +4,7 @@ import React from "react";
 
 function MDBFormikInput({ ...props }) {
     const [field] = useField(props);
-    return <MDBInput {...field} {...props} />;
+    return <MDBInput {...field} {...props} autoComplete="off" />;
 }
 
 export default MDBFormikInput;
