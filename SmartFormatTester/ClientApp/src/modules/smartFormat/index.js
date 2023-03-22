@@ -86,7 +86,7 @@ const SmartFormat = () => {
                                                 </MDBCol>
                                                 <MDBCol>
                                                     <MDBFormikTextArea
-                                                        label={`Smart Format ${index + 1} expression`}
+                                                        label={`SmartFormat ${index + 1} expression`}
                                                         name={`smartFormats[${index}].expression`}
                                                         type="text"
                                                         className="w-100"
@@ -127,7 +127,7 @@ const SmartFormat = () => {
                                                 <MDBCol
                                                     md={"auto"}
                                                     className="px-0"
-                                                    title={`Copy Smart Format ${index + 1} result`}
+                                                    title={`Copy SmartFormat ${index + 1} result`}
                                                 >
                                                     <MDBBtn
                                                         color="light"
@@ -141,7 +141,7 @@ const SmartFormat = () => {
                                                 </MDBCol>
                                                 <MDBCol className="pe-0">
                                                     <MDBFormikTextArea
-                                                        label={`Smart Format ${index + 1} result`}
+                                                        label={`SmartFormat ${index + 1} result`}
                                                         name={`smartFormats[${index}].result`}
                                                         type="text"
                                                         className="w-100"
@@ -170,7 +170,7 @@ const SmartFormat = () => {
                                             size="lg"
                                             type="button"
                                         >
-                                            Add Smart Format Expression
+                                            Add SmartFormat Expression
                                         </MDBBtn>
                                     </MDBRow>
                                 </>
