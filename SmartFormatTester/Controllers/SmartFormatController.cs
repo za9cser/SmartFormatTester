@@ -21,17 +21,17 @@ public class SmartFormatController : Controller
         if (!request.Model.TryDeserialize(out var model) || model == null)
             return BadRequest(new ErrorModel(nameof(SmartFormatRequest.Model), "Model is not valid json"));
 
-        var results = new SmartFormatResult[request.Expressions.Length];
-        for (int i = 0; i < results.Length; i++)
+        var smartFormats = new SmartFormatResult[request.Expressions.Length];
+        for (int i = 0; i < smartFormats.Length; i++)
         {
             var expression = request.Expressions[i];
             var result = new SmartFormatResult(
                 expression ?? "",
                 !string.IsNullOrWhiteSpace(expression) ? Smart.Format(expression, model) : "");
 
-            results[i] = result;
+            smartFormats[i] = result;
         }
 
-        return Ok(new SmartFormatResponse(results));
+        return Ok(new SmartFormatResponse(smartFormats));
     }
 }

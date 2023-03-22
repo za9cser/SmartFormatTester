@@ -1,12 +1,14 @@
 import React from "react";
 import { Form, Formik, FieldArray } from "formik";
 import * as yup from "yup";
-import { MDBContainer, MDBRow, MDBCol, MDBInput, MDBBtn, MDBTextArea } from "mdb-react-ui-kit";
+import { MDBContainer, MDBRow, MDBCol, MDBBtn } from "mdb-react-ui-kit";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faCopy } from "@fortawesome/free-regular-svg-icons";
-import { faPlay, faTimes } from "@fortawesome/free-solid-svg-icons";
+import { faTimes } from "@fortawesome/free-solid-svg-icons";
 import MDBFormikInput from "../../components/MDBFormikInput";
 import MDBFormikTextArea from "../../components/MDBFormikTextArea";
+import axios from "axios";
+
 const initialValues = {
     smartFormats: [
         {
@@ -17,13 +19,50 @@ const initialValues = {
     model: "",
 };
 
+const URL = "api/smartFormat";
+
 const SmartFormat = () => {
+    const smartFormat = async (model, expressions) => {
+        if (!model || !expressions) return;
+        let data = null;
+        let error = null;
+        const payload = {
+            model,
+            expressions,
+        };
+        try {
+            data = (await axios.post(URL, payload)).data;
+        } catch (err) {
+            error = err;
+        }
+
+        return {
+            data,
+            error,
+            isOk: !error && !data?.errorMessage,
+        };
+    };
+
     return (
         <Formik initialValues={initialValues}>
             {(formik) => (
                 <Form>
                     <MDBContainer>
-                        <MDBFormikTextArea label={`Model`} name={`model`} size="lg" rows={4} className="mb-3" />
+                        <MDBFormikTextArea
+                            label={`Model`}
+                            name={`model`}
+                            size="lg"
+                            rows={4}
+                            className="mb-3"
+                            onChange={async (e) => {
+                                formik.setFieldValue(e.target.name, e.target.value);
+                                const { isOk, data, error } = await smartFormat(
+                                    formik.values.model,
+                                    formik.values.smartFormats
+                                );
+                                isOk && data && formik.setFieldValue("smartFormats", data.smartFormats);
+                            }}
+                        />
 
                         <FieldArray name="smartFormats">
                             {({ push, remove }) => (
@@ -53,18 +92,23 @@ const SmartFormat = () => {
                                                         type="text"
                                                         className="w-100"
                                                         size="lg"
+                                                        onChange={async (e) => {
+                                                            const value = e.target.value;
+                                                            formik.setFieldValue(e.target.name, value);
+                                                            if (!value) return;
+
+                                                            const { isOk, data, error } = await smartFormat(
+                                                                formik.values.model,
+                                                                [value]
+                                                            );
+                                                            isOk &&
+                                                                data &&
+                                                                formik.setFieldValue(
+                                                                    `smartFormats[${index}].result`,
+                                                                    data.smartFormats[0].result
+                                                                );
+                                                        }}
                                                     />
-                                                </MDBCol>
-                                                <MDBCol md={"auto"}>
-                                                    <MDBBtn
-                                                        color="primary"
-                                                        onClick={() => remove(index)}
-                                                        className="px-3"
-                                                        size="lg"
-                                                        type="button"
-                                                    >
-                                                        <FontAwesomeIcon icon={faPlay} size="lg" />
-                                                    </MDBBtn>
                                                 </MDBCol>
 
                                                 <MDBCol md={"auto"} className="pe-0">

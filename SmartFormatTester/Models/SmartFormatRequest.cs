@@ -8,11 +8,11 @@ public class SmartFormatRequest
 
 public class SmartFormatResponse
 {
-    public SmartFormatResult[]? Results { get; set; }
+    public SmartFormatResult[]? SmartFormats { get; set; }
 
-    public SmartFormatResponse(SmartFormatResult[]? results)
+    public SmartFormatResponse(SmartFormatResult[]? smartFormats)
     {
-        Results = results;
+        SmartFormats = smartFormats;
     }
 
     public SmartFormatResponse()
