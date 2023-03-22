@@ -11,7 +11,6 @@ builder.Services.AddControllersWithViews().AddNewtonsoftJson();
 
 Smart.Default.Settings.FormatErrorAction = ErrorAction.Ignore;
 Smart.Default.Settings.ParseErrorAction = ErrorAction.Ignore;
-// вырубаем форматтеры даты м времени от SmartFormat, чтобы работали стандартные .net форматтеры
 Smart.Default.FormatterExtensions.RemoveAll(f => f is TimeFormatter);
 Smart.Default.FormatterExtensions.Add(new IsMatchFormatter { RegexOptions = RegexOptions.CultureInvariant | RegexOptions.IgnoreCase });
 
