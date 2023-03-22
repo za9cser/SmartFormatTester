@@ -169,6 +169,7 @@ const SmartFormat = () => {
                                             }
                                             size="lg"
                                             type="button"
+                                            className="fw-bold"
                                         >
                                             Add SmartFormat Expression
                                         </MDBBtn>
