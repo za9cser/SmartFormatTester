@@ -167,6 +167,7 @@ const SmartFormat = () => {
                                                     result: "",
                                                 })
                                             }
+                                            size="lg"
                                             type="button"
                                         >
                                             Add Smart Format Expression
