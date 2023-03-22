@@ -11,4 +11,4 @@ public class SmartFormatController : Controller
     {
         return Ok();
     }
-}   
+}
