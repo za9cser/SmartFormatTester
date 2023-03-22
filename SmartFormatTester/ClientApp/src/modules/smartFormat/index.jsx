@@ -150,6 +150,12 @@ const SmartFormat = () => {
                                                     />
                                                 </MDBCol>
                                             </MDBRow>
+                                            {value.result && (
+                                                <MDBRow>
+                                                    <h6>Smart Format {index + 1} result web representation</h6>
+                                                    <div dangerouslySetInnerHTML={{ __html: value.result }} />
+                                                </MDBRow>
+                                            )}
                                         </MDBContainer>
                                     ))}
                                     <MDBRow>
