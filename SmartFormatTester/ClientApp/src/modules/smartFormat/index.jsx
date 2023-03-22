@@ -52,13 +52,13 @@ const SmartFormat = () => {
                             label={`Model`}
                             name={`model`}
                             size="lg"
-                            rows={4}
+                            rows={6}
                             className="mb-3"
                             onChange={async (e) => {
                                 formik.setFieldValue(e.target.name, e.target.value);
                                 const { isOk, data, error } = await smartFormat(
-                                    formik.values.model,
-                                    formik.values.smartFormats
+                                    e.target.value,
+                                    formik.values.smartFormats.map((value) => value.expression)
                                 );
                                 isOk && data && formik.setFieldValue("smartFormats", data.smartFormats);
                             }}
@@ -86,12 +86,13 @@ const SmartFormat = () => {
                                                     </MDBBtn>
                                                 </MDBCol>
                                                 <MDBCol>
-                                                    <MDBFormikInput
+                                                    <MDBFormikTextArea
                                                         label={`Smart Format ${index + 1} expression`}
                                                         name={`smartFormats[${index}].expression`}
                                                         type="text"
                                                         className="w-100"
                                                         size="lg"
+                                                        rows={1}
                                                         onChange={async (e) => {
                                                             const value = e.target.value;
                                                             formik.setFieldValue(e.target.name, value);
@@ -140,12 +141,13 @@ const SmartFormat = () => {
                                                     </MDBBtn>
                                                 </MDBCol>
                                                 <MDBCol className="pe-0">
-                                                    <MDBFormikInput
+                                                    <MDBFormikTextArea
                                                         label={`Smart Format ${index + 1} result`}
                                                         name={`smartFormats[${index}].result`}
                                                         type="text"
                                                         className="w-100"
                                                         size="lg"
+                                                        rows={1}
                                                     />
                                                 </MDBCol>
                                             </MDBRow>
