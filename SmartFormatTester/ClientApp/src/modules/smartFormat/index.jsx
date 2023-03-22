@@ -1,11 +1,10 @@
 import React from "react";
 import { Form, Formik, FieldArray } from "formik";
 import * as yup from "yup";
-import { MDBContainer, MDBRow, MDBCol, MDBInputGroup, MDBInput, MDBBtn } from "mdb-react-ui-kit";
+import { MDBContainer, MDBRow, MDBCol, MDBInput, MDBBtn, MDBTextArea } from "mdb-react-ui-kit";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faCopy } from "@fortawesome/free-regular-svg-icons";
 import { faPlay, faTimes } from "@fortawesome/free-solid-svg-icons";
-
 const initialValues = {
     smartFormats: [
         {
@@ -22,9 +21,11 @@ const SmartFormat = () => {
             {(formik) => (
                 <Form>
                     <MDBContainer>
+                        <MDBTextArea label={`Model`} name={`model`} size="lg" rows={4} className="mb-3" />
+
                         <FieldArray name="smartFormats">
                             {({ push, remove }) => (
-                                <MDBContainer>
+                                <>
                                     {formik.values.smartFormats.map((_, index) => (
                                         <MDBContainer className="border-top border-bottom py-1">
                                             <MDBRow start className="fw-bold">{`SmartFormat expression ${
@@ -60,7 +61,7 @@ const SmartFormat = () => {
                                                     </MDBBtn>
                                                 </MDBCol>
 
-                                                <MDBCol md={"auto"}>
+                                                <MDBCol md={"auto"} className="pe-0">
                                                     <MDBBtn
                                                         color="danger"
                                                         onClick={() => remove(index)}
@@ -86,7 +87,7 @@ const SmartFormat = () => {
                                                         <FontAwesomeIcon icon={faCopy} color="text-primary" size="lg" />
                                                     </MDBBtn>
                                                 </MDBCol>
-                                                <MDBCol>
+                                                <MDBCol className="pe-0">
                                                     <MDBInput
                                                         label={`Smart Format ${index + 1} result`}
                                                         name={`smartFormats[${index}].result`}
@@ -103,7 +104,7 @@ const SmartFormat = () => {
                                             Add Smart Format Expression
                                         </MDBBtn>
                                     </MDBRow>
-                                </MDBContainer>
+                                </>
                             )}
                         </FieldArray>
                     </MDBContainer>
