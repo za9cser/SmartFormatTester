@@ -1,11 +1,9 @@
 import React from "react";
 import { Form, Formik, FieldArray } from "formik";
-import * as yup from "yup";
 import { MDBContainer, MDBRow, MDBCol, MDBBtn } from "mdb-react-ui-kit";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faCopy } from "@fortawesome/free-regular-svg-icons";
 import { faTimes } from "@fortawesome/free-solid-svg-icons";
-import MDBFormikInput from "../../components/MDBFormikInput";
 import MDBFormikTextArea from "../../components/MDBFormikTextArea";
 import axios from "axios";
 
@@ -56,12 +54,13 @@ const SmartFormat = () => {
                             className="mb-3"
                             onChange={async (e) => {
                                 formik.setFieldValue(e.target.name, e.target.value);
-                                const { isOk, data, error } = await smartFormat(
+                                const { isOk, data } = await smartFormat(
                                     e.target.value,
                                     formik.values.smartFormats.map((value) => value.expression)
                                 );
                                 isOk && data && formik.setFieldValue("smartFormats", data.smartFormats);
                             }}
+                            style={{ fontSize: 14, lineHeight: 1.4 }}
                         />
 
                         <FieldArray name="smartFormats">
@@ -98,7 +97,7 @@ const SmartFormat = () => {
                                                             formik.setFieldValue(e.target.name, value);
                                                             if (!value) return;
 
-                                                            const { isOk, data, error } = await smartFormat(
+                                                            const { isOk, data } = await smartFormat(
                                                                 formik.values.model,
                                                                 [value]
                                                             );
