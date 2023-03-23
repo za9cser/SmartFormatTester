@@ -4,8 +4,13 @@ import { MDBContainer, MDBRow, MDBCol, MDBBtn } from "mdb-react-ui-kit";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faCopy } from "@fortawesome/free-regular-svg-icons";
 import { faTimes } from "@fortawesome/free-solid-svg-icons";
+import { highlight, languages } from "prismjs/components/prism-core";
+import "prismjs/components/prism-clike";
+import "prismjs/components/prism-json";
+import "prismjs/themes/prism.css";
 import MDBFormikTextArea from "../../components/MDBFormikTextArea";
 import axios from "axios";
+import Editor from "react-simple-code-editor";
 
 const initialValues = {
     smartFormats: [
@@ -46,23 +51,26 @@ const SmartFormat = () => {
             {(formik) => (
                 <Form>
                     <MDBContainer>
-                        <MDBFormikTextArea
-                            label={`Model`}
-                            name={`model`}
-                            size="lg"
-                            rows={6}
-                            className="mb-3"
-                            onChange={async (e) => {
-                                formik.setFieldValue(e.target.name, e.target.value);
+                        Model
+                        <Editor
+                            value={formik.values.model}
+                            onValueChange={async (code) => {
+                                formik.setFieldValue("model", code);
                                 const { isOk, data } = await smartFormat(
-                                    e.target.value,
+                                    code,
                                     formik.values.smartFormats.map((value) => value.expression)
                                 );
                                 isOk && data && formik.setFieldValue("smartFormats", data.smartFormats);
                             }}
-                            style={{ fontSize: 14, lineHeight: 1.4 }}
+                            highlight={(code) => highlight(code, languages.json)}
+                            padding={10}
+                            rows={6}
+                            className="border rounded mb-3 "
+                            style={{
+                                fontSize: 14,
+                                minHeight: 100,
+                            }}
                         />
-
                         <FieldArray name="smartFormats">
                             {({ push, remove }) => (
                                 <>
