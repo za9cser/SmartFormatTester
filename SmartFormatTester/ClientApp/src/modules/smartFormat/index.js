@@ -78,7 +78,7 @@ const SmartFormat = () => {
                                         <MDBContainer className="border-top border-bottom py-1" key={index}>
                                             <MDBRow className="align-items-center my-3">
                                                 <MDBCol
-                                                    md={"auto"}
+                                                    xs={"auto"}
                                                     className="px-0"
                                                     title={`Copy SmartFormat ${index + 1} expression`}
                                                 >
@@ -133,7 +133,7 @@ const SmartFormat = () => {
                                             </MDBRow>
                                             <MDBRow className="align-items-center mb-3">
                                                 <MDBCol
-                                                    md={"auto"}
+                                                    xs={"auto"}
                                                     className="px-0"
                                                     title={`Copy SmartFormat ${index + 1} result`}
                                                 >
